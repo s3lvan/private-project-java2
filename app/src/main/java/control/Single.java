@@ -46,7 +46,7 @@ public class Single {
    */
   public static int sumModulus(int n, int m) {
     Vector<Integer> multiples = new Vector<Integer>();
-    for (int i = 0; i < n; i++) {
+    for (int i = 1; i < n+1; i++) {
       if (i % m == 0) {
         multiples.add(i);
       }
