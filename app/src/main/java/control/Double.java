@@ -27,10 +27,8 @@ public class Double {
    */
   public static int sumTriangle(int n) {
     int sum = 0;
-    for (int i = 0; i < n + 1; i++) {
-      for (int j = 0; j < i; j++) {
-        sum = sum + j;
-      }
+    for (int i = 1; i <= n; i++) {
+      sum += i * (i + 1) / 2;
     }
     return sum;
   }
