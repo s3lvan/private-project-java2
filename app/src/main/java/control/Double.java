@@ -1,11 +1,18 @@
 package control;
 
 public class Double {
-  /**
-   * Sums all values squared from 0 to n
-   *
-   * @param n The number of natural numbers to sum.
-   * @return The sum of the first n natural numbers squared.
+/**
+   * Sums all values squared from 0 to n-1
+   * 
+   * @param n The upper bound (exclusive) of natural numbers to sum
+   * @return The sum of squares of numbers from 0 to n-1
+   * 
+   * Example: For n=4
+   * i=0: 0*0 = 0
+   * i=1: 1*1 = 1
+   * i=2: 2*2 = 4
+   * i=3: 3*3 = 9
+   * Total sum = 14
    */
   public static int sumSquare(int n) {
     int sum = 0;
