@@ -44,19 +44,35 @@ public class Double {
    * @return The number of pairs in the array.
    */
   public static int countPairs(int[] arr) {
-    int count = 0;
-    for (int i = 0; i < arr.length; i++) {
-      int nDuplicates = 0;
-      for (int j = 0; j < arr.length; j++) {
-        if (arr[i] == arr[j]) {
-          nDuplicates++;
-        }
-      }
-      if (nDuplicates == 2) {
-        count++;
+    if (arr == null || arr.length < 2) {
+      return 0;
+    }
+    
+    // Find min and max to determine count array size
+    int min = arr[0];
+    int max = arr[0];
+    for (int num : arr) {
+      if (num < min) min = num;
+      if (num > max) max = max;
+    }
+    
+    // Create counting array
+    int[] counts = new int[max - min + 1];
+    
+    // Count occurrences
+    for (int num : arr) {
+      counts[num - min]++;
+    }
+    
+    // Count pairs (elements occurring exactly twice)
+    int pairCount = 0;
+    for (int count : counts) {
+      if (count == 2) {
+        pairCount++;
       }
     }
-    return count / 2;
+    
+    return pairCount;
   }
 
   /**
