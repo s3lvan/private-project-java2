@@ -1,4 +1,5 @@
 package algorithms;
+import java.util.ArrayList;
 
 import java.util.Vector;
 
@@ -13,8 +14,17 @@ public class Primes {
     if (n < 2) {
       return false;
     }
-    for (int i = 2; i < n; i++) {
-      if (n % i == 0 && i != n) {
+    if (n == 2) {
+      return true;
+    }
+    if (n % 2 == 0) {
+      return false;
+    }
+    // Only need to check up to square root of n
+    int sqrt = (int) Math.sqrt(n);
+    // Only check odd numbers
+    for (int i = 3; i <= sqrt; i += 2) {
+      if (n % i == 0) {
         return false;
       }
     }
@@ -28,10 +38,13 @@ public class Primes {
    * @return The sum of the first n prime numbers.
    */
   public static int SumPrimes(int n) {
+    if (n < 2) return 0;
+    
     int sum = 0;
-    for (int i = 0; i < n; i++) {
+    // Start from 2 since we know smaller numbers aren't prime
+    for (int i = 2; i < n; i++) {
       if (IsPrime(i)) {
-        sum = sum + i;
+        sum += i;
       }
     }
     return sum;
@@ -45,11 +58,22 @@ public class Primes {
    */
   public static Vector<Integer> PrimeFactors(int n) {
     Vector<Integer> ret = new Vector<Integer>();
-
-    for (int i = 2; i < n; i++) {
-      if (n % i == 0 && IsPrime(i)) {
-        ret.add(i);
+    
+    if (n < 2) return ret;
+    
+    // We only need to check up to square root for non-prime factors
+    int sqrt = (int) Math.sqrt(n);
+    for (int i = 2; i <= sqrt; i++) {
+      while (n % i == 0) {
+        if (IsPrime(i)) {
+          ret.add(i);
+        }
+        n /= i;
       }
+    }
+    // If n is greater than 1 at this point, it is prime itself
+    if (n > 1) {
+      ret.add(n);
     }
     return ret;
   }
