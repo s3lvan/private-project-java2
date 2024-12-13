@@ -46,10 +46,16 @@ public class Primes {
   public static Vector<Integer> PrimeFactors(int n) {
     Vector<Integer> ret = new Vector<Integer>();
 
-    for (int i = 2; i < n; i++) {
-      if (n % i == 0 && IsPrime(i)) {
-        ret.add(i);
+    for (int i = 2; i <= Math.sqrt(n); i++) {
+      while (n % i == 0) {
+        if (IsPrime(i)) {
+          ret.add(i);
+        }
+        n /= i;
       }
+    }
+    if (n > 1) {
+      ret.add(n);
     }
     return ret;
   }
