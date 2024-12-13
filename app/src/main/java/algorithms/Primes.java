@@ -13,8 +13,17 @@ public class Primes {
     if (n < 2) {
       return false;
     }
-    for (int i = 2; i < n; i++) {
-      if (n % i == 0 && i != n) {
+    if (n == 2) {
+      return true;
+    }
+    if (n % 2 == 0) {
+      return false;
+    }
+    // Only need to check up to square root of n
+    int sqrt = (int) Math.sqrt(n);
+    // Only check odd numbers for division
+    for (int i = 3; i <= sqrt; i += 2) {
+      if (n % i == 0) {
         return false;
       }
     }
